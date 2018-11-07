@@ -8,5 +8,5 @@ const mongoose = require("mongoose");
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/allocine-api"
 );
-
+console.log("Hello World");
 app.listen(process.env.PORT || 3000);
