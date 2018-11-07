@@ -84,7 +84,8 @@ app.post("/api/sign_up", function(req, res) {
         _id: newUser._id,
         token: newUser.token,
         email: newUser.email,
-        lists: newUser.lists
+        lists: newUser.lists,
+        toto: "test"
       });
     }
   });
