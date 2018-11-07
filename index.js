@@ -54,17 +54,39 @@ app.get("/api/movies/:type", function(req, res) {
     });
 });
 
-/* const UserModel = mongoose.model("User", {
+const UserModel = mongoose.model("User", {
   email: String,
   password: String,
   token: String,
-  salt : String,
-  hash: String, 
+  salt: String,
+  hash: String,
   email: String,
-  list: Array
+  lists: Array
 });
 
-app.post("/api/sign_up", function(req, res) {});
-  */
+app.post("/api/sign_up", function(req, res) {
+  const password = req.body.password;
+  const salt = uid2(16);
+  const hash = SHA256(password + salt).toString(encBase64);
+
+  newUser = new UserModel({
+    email: req.body.email,
+    token: uid2(16),
+    salt: salt,
+    hash: hash
+  });
+  newUser.save(function(err, userSaved) {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    } else {
+      res.json({
+        _id: newUser._id,
+        token: newUser.token,
+        email: newUser.email,
+        lists: newUser.lists
+      });
+    }
+  });
+});
 
 app.listen(process.env.PORT || 3000);
