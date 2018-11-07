@@ -65,6 +65,6 @@ app.get("/api/movies/:type", function(req, res) {
 });
 
 app.post("/api/sign_up", function(req, res) {});
- */
+  */
 
 app.listen(process.env.PORT || 3000);
