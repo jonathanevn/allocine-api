@@ -10,7 +10,8 @@ const uid2 = require("uid2");
 
 const mongoose = require("mongoose");
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/allocine-api"
+  process.env.MONGODB_URI || "mongodb://localhost:27017/allocine-api",
+  { useNewUrlParser: true }
 );
 
 const myKey = "da5d68d586ecca7ea39c2c9c3a31f39c";
@@ -89,4 +90,6 @@ app.post("/api/sign_up", function(req, res) {
   });
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, function() {
+  console.log("server is up");
+});
